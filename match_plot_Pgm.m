@@ -19,6 +19,16 @@ hold on;
 for i=1:size(points1,1)
     plot([points1(i,1) points2(i,1)],[points1(i,2) points2(i,2)],colormap{mod(i,5)+1}, 'LineWidth', 2);
 end
+
+% 
+% for i=1:size(points1,1)
+% %         points1(i, :)
+% %         points2(i, :)
+%         if((~isequal(round(points1(i, :)), [0, 0])) && (~isequal(round(points2(i, :)), [0, 0])))
+%             plot([points1(i,1) points2(i,1)],[points1(i,2) points2(i,2)],colormap{mod(i,5)+1}, 'LineWidth', 2);
+%         end
+% end
+
 % hold off;
 
 end

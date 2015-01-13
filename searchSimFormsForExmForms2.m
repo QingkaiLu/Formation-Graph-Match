@@ -12,6 +12,8 @@ playsIdExp = playsIdExp(:, 2);
 
 gameODs = textread(['../formations/game' int2str(gameId) '_ODK'],'%c');
 
+rectLosCntGts = dlmread(['../losCntGt/Game' gameIdStr 'LosCntGtRect']);
+
 expPlaysSz = size(playsIdExp, 1);
 matchPlaysSz = size(playsIdToMatch, 1);
 for i = 1 : expPlaysSz
@@ -27,6 +29,8 @@ for i = 1 : expPlaysSz
             curPlayId = playsIdToMatch(j);
             curPlayIdStr = sprintf ('%03d', curPlayId);
             p = dlmread(['../formations/Game' gameIdStr '/' 'vid' curPlayIdStr '.pos']);
+%             rectLosCntGt = rectLosCntGts(rectLosCntGts(:, 1) == curPlayId, 2:3);
+%             p(1, :) = rectLosCntGt;
             pCells{j} = p;
 %             [assignMats{j}, costs(j)] = matchTwoForm(p, q);
             if(gameODs(expPlayId) ==  gameODs(curPlayId))
@@ -67,8 +71,10 @@ for i = 1 : expPlaysSz
     end
     mkdir(expSearchVidPlotsPath);
     
-    img2 = imread(['../formExmpImgs/Game' gameIdStr '/' gameIdStr '0' expPlayIdStr 'Rect.jpg']);
-    img2Orig = imread(['../formExmpImgs/Game' gameIdStr '/' gameIdStr '0' expPlayIdStr '.jpg']);
+%     img2 = imread(['../formExmpImgs/Game' gameIdStr '/' gameIdStr '0' expPlayIdStr 'Rect.jpg']);
+%     img2Orig = imread(['../formExmpImgs/Game' gameIdStr '/' gameIdStr '0' expPlayIdStr '.jpg']);
+    img2 = imread(['../formExmpImgs/Game' gameIdStr 'Los/' gameIdStr '0' expPlayIdStr 'Rect.jpg']);
+    img2Orig = imread(['../formExmpImgs/Game' gameIdStr 'Los/' gameIdStr '0' expPlayIdStr '.jpg']);
     searchResNum = 4;
     bestSearchRes = zeros(size(img2, 1), 2 * size(img2, 2), size(img2, 3));
     bestSearchResOrig = zeros(size(img2Orig, 1), 2 * size(img2Orig, 2), size(img2Orig, 3));
@@ -88,8 +94,12 @@ for i = 1 : expPlaysSz
     for k = 1:searchResNum
         curPlayId = playsIdToMatch(sortIdx(k));
         curPlayIdStr = sprintf ('%03d', curPlayId);
-        img1 = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
-        img1Orig = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr '.jpg']);
+%         img1 = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
+%         img1Orig = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr '.jpg']);
+%         img1 = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
+%         img1Orig = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr '.jpg']);
+        img1 = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
+        img1Orig = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr '.jpg']);
         bestImg1{k} = img1;
         bestImg1Orig{k} = img1Orig;
 %         if(k == 1)
@@ -135,8 +145,12 @@ for i = 1 : expPlaysSz
         if(costs(sortIdx(k)) ~= inf)
             curPlayId = playsIdToMatch(sortIdx(k));
             curPlayIdStr = sprintf ('%03d', curPlayId);
-            img1 = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
-            img1Orig = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr '.jpg']);
+%             img1 = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
+%             img1Orig = imread(['../formImgs/Game' gameIdStr '/' gameIdStr '0' curPlayIdStr '.jpg']);
+%             img1 = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
+%             img1Orig = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr '.jpg']);
+            img1 = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr 'Rect.jpg']);
+            img1Orig = imread(['../formImgs/Game' gameIdStr 'GtLos/' gameIdStr '0' curPlayIdStr '.jpg']);
     %         worstSearchRes = [worstSearchRes; img1];
     %         worstSearchResOrig = [worstSearchResOrig; img1Orig];
             worstImg1{wstIdx} = img1;

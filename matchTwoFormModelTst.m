@@ -68,23 +68,24 @@ Aeq = [firstRow; Aeq];
 beq = [1; beq];
 
 % x0 = 0.5 * ones(pSz * qSz, 1);
-% x0 = zeros(pSz * qSz, 1);
+x0 = zeros(pSz * qSz, 1);
 % x0 = reshape(eye(pSz, qSz), pSz * qSz, 1);
 
 %x0 for matching exemplar video 17 to video 2 in Game02
 % x0 = [1 0 0 0 0 0; 0 0 0 1 0 0; 0 1 0 0 0 0; 0 0 0 0 1 0; 0 0 1 0 0 0; 0 0 0 0 0 0; 0 0 0 0 0 1; 0 0 0 0 0 0];
 % x0 = [1 0 0 0 0 0; 0 0 0 1 0 0; 0 0 0 0 0 0; 0 0 0 0 1 0; 0 0 1 0 0 0; 0 0 0 0 0 0; 0 0 0 0 0 1; 0 0 0 0 0 0];
 %x0 for matching exemplar video 20 to video 20 in Game02
-x0 = [1 0 0 0 0 0; 0 0 0 0 0 1; 0 0 1 0 0 0; 0 0 0 1 0 0; 0 0 0 0 1 0; 0 1 0 0 0 0];
-x0 = [x0; zeros(6,6)];
-x0 = reshape(x0, pSz * qSz, 1);
+% x0 = [1 0 0 0 0 0; 0 0 0 0 0 1; 0 0 1 0 0 0; 0 0 0 1 0 0; 0 0 0 0 1 0; 0 1 0 0 0 0];
+% x0 = [x0; zeros(6,6)];
+% x0 = reshape(x0, pSz * qSz, 1);
 
 %x0(1) = 1;
 % x0 = eye(pSz, qSz);
 % x0 = reshape(x0, pSz * qSz, 1);
 % opts = optimoptions('quadprog', 'Algorithm','interior-point-convex','Display','iter');
 H = 2 * H;
-[x, cost] = quadprog(H,f,A,b,Aeq,beq,lb,ub,x0,'Algorithm','active-set');
+opts = optimoptions('quadprog','Algorithm','active-set', 'MaxIter', 1000);
+[x, cost] = quadprog(H,f,A,b,Aeq,beq,lb,ub,x0,opts);
 %[x, cost] = quadprog(H,f,A,b,Aeq,beq,lb,ub);
 % x
 assignMat = reshape(x, pSz, qSz);
