@@ -1,16 +1,5 @@
 function [ ] = matchFormOneGame()
 
-% p = dlmread('../formsExemplar/Game02/vid002.pos');
-% q = dlmread('../formations/Game02/vid006.pos');
-% %q = p;
-% %q = p;
-% [assignMat, cost] = matchTwoForm(p, q);
-% 
-% img1 = imread('../formExmpImgs/Game02/020002Rect.jpg');
-% img2 = imread('../formImgs/Game02/020006Rect.jpg');
-% match_plot(img1,img2,assignMat'*p,q);
-% % match_plot(img2,img1,q,assignMat'*p);
-
 figure;
 
 gameId = 2;

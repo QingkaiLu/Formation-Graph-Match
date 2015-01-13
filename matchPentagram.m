@@ -17,9 +17,6 @@ q = q(2:step / 3:size(q, 1), :);
 % [assignMat, cost] = matchTwoFormModelTst(p, q);
 [assignMat, cost] = matchTwoForm(p, q);
 cost
-% img1 = imread('../pentagram1.jpg');
-% img2 = imread('../pentagram2.jpg');
-% match_plot(img1,img2,assignMat'*p,q);
 
 match_plot_Pgm(assignMat' * p, q);
 % match_plot_Pgm(q, assignMat' * p);
